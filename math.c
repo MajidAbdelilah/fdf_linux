@@ -73,13 +73,13 @@ t_point	matrix4x4_set_rotation(float flAngle, t_point axis, t_point v)
 
 	result = v;
 	if (axis.x == 1.0f)
-		result = point_matrix_multiply(
+		result = point_matrix_multiply_sse(
 				matrix4x4_set_rotation_x(flAngle), result);
 	if (axis.y == 1.0f)
-		result = point_matrix_multiply(
+		result = point_matrix_multiply_sse(
 				matrix4x4_set_rotation_y(flAngle), result);
 	if (axis.z == 1.0f)
-		result = point_matrix_multiply(
+		result = point_matrix_multiply_sse(
 				matrix4x4_set_rotation_z(flAngle), result);
 	return (result);
 }

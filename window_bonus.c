@@ -10,56 +10,56 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "/usr/local/include/mlx.h"
 #include "fdf.h"
 #include <stdio.h>
-#include "/usr/local/include/mlx.h"
 #include <stdlib.h>
 
-void	w_rotate(int keycode, t_loop_data *vars)
-{
-	if (keycode == 31)
-		rotate(vars, (t_point){1, 0, 0, 0}, 0);
-	if (keycode == 37)
-		rotate(vars, (t_point){1, 0, 0, 0}, 1);
-	if (keycode == 34)
-		rotate(vars, (t_point){0, 1, 0, 0}, 0);
-	if (keycode == 40)
-		rotate(vars, (t_point){0, 1, 0, 0}, 1);
-	if (keycode == 32)
-		rotate(vars, (t_point){0, 0, 1, 0}, 0);
-	if (keycode == 38)
-		rotate(vars, (t_point){0, 0, 1, 0}, 1);
+void w_rotate(int keycode, t_loop_data *vars) {
+  if (keycode == 111)
+    rotate(vars, (t_point){1, 0, 0, 0}, 0);
+  if (keycode == 108)
+    rotate(vars, (t_point){1, 0, 0, 0}, 1);
+  if (keycode == 105)
+    rotate(vars, (t_point){0, 1, 0, 0}, 0);
+  if (keycode == 107)
+    rotate(vars, (t_point){0, 1, 0, 0}, 1);
+  if (keycode == 117)
+    rotate(vars, (t_point){0, 0, 1, 0}, 0);
+  if (keycode == 106)
+    rotate(vars, (t_point){0, 0, 1, 0}, 1);
 }
 
-void	w_translate_scale(int keycode, t_loop_data *vars)
-{
-	if (keycode == 12)
-		translate(vars, (t_point){1, 0, 0, 0}, 0);
-	if (keycode == 0)
-		translate(vars, (t_point){1, 0, 0, 0}, 1);
-	if (keycode == 13)
-		translate(vars, (t_point){0, 1, 0, 0}, 0);
-	if (keycode == 1)
-		translate(vars, (t_point){0, 1, 0, 0}, 1);
-	if (keycode == 78)
-		scale(vars, (t_point){1, 1, 1, 0}, 0);
-	if (keycode == 69)
-		scale(vars, (t_point){1, 1, 1, 0}, 1);
-	if (keycode == 7)
-		vars->animate = !vars->animate;
-	if (keycode == 6)
-		multiview_orthographic_projection(vars);
+void w_translate_scale(int keycode, t_loop_data *vars) {
+  if (keycode == 97)
+    translate(vars, (t_point){1, 0, 0, 0}, 0);
+  if (keycode == 113)
+    translate(vars, (t_point){1, 0, 0, 0}, 1);
+  if (keycode == 122)
+    translate(vars, (t_point){0, 1, 0, 0}, 0);
+  if (keycode == 115)
+    translate(vars, (t_point){0, 1, 0, 0}, 1);
+  if (keycode == 65453)
+    scale(vars, (t_point){1, 1, 1, 0}, 0);
+  if (keycode == 65451)
+    scale(vars, (t_point){1, 1, 1, 0}, 1);
+  if (keycode == 120)
+    vars->animate = !vars->animate;
+  if (keycode == 119)
+    multiview_orthographic_projection(vars);
 }
 
-int	handle_keys(int keycode, t_loop_data *vars)
-{
-	w_rotate(keycode, vars);
-	w_translate_scale(keycode, vars);
-	if (keycode != 53)
-		return (0);
-	mlx_destroy_window(vars->mlx, vars->mlx_win);
-	mlx_destroy_image(vars->mlx, vars->img.img);
-	free(vars->result);
-	exit(0);
-	return (0);
+#include <stdio.h>
+
+int handle_keys(int keycode, t_loop_data *vars) {
+  printf("keycode = %d\n", keycode);
+  w_rotate(keycode, vars);
+  w_translate_scale(keycode, vars);
+  if (keycode != 65307)
+    return (0);
+  mlx_destroy_window(vars->mlx, vars->mlx_win);
+  mlx_destroy_image(vars->mlx, vars->img.img);
+  free(vars->result);
+  exit(0);
+  return (0);
 }

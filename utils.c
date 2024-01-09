@@ -21,13 +21,13 @@ float	get_scale(t_loop_data d, t_main *m,
 	t_point	scale;
 
 	p = d.result[0];
-	p = point_matrix_multiply(pers, point_matrix_multiply(rotation, p));
+	p = point_matrix_multiply_sse(pers, point_matrix_multiply_sse(rotation, p));
 	xy = (t_point){p.x, p.x, p.y, p.y};
 	m->i = 0;
 	while (m->i < m->size)
 	{
 		p = d.result[m->i];
-		p = point_matrix_multiply(pers, point_matrix_multiply(rotation, p));
+		p = point_matrix_multiply_sse(pers, point_matrix_multiply_sse(rotation, p));
 		xy = (t_point){.x = get_max(xy.x, p.x), .z = get_max(xy.z, p.y),
 			.y = get_min(xy.y, p.x), .w = get_min(xy.w, p.y)};
 		m->i++;

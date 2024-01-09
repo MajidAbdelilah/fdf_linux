@@ -21,12 +21,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+float min(float x, float y)
+{
+	char	is_x = (x < y);
+	return (is_x * x + !is_x * y);
+}
+float max(float x, float y)
+{
+	char	is_x = (x > y);
+	return (is_x * x + !is_x * y);
+}
+
 void	dda(t_point p, t_data *data, int color)
 {
 	float		steps;
 	t_point		dda;
 	long long	i;
 	char		is_x;
+
+
 
 	dda.x = p.z - p.x;
 	dda.y = p.w - p.y;
@@ -72,8 +85,8 @@ void	draw_line(t_loop_data d, t_main m, t_point p, long long index)
 	t_point	p2;
 
 	p2 = d.result[m.i - index];
-	p2 = point_matrix_multiply(d.model, p2);
-	p2 = point_matrix_multiply(d.pers, p2);
+	p2 = point_matrix_multiply_sse(d.model, p2);
+	p2 = point_matrix_multiply_sse(d.pers, p2);
 	if (d.result[m.i].y < 0.0f || d.result[m.i - index].y < 0.0f)
 		dda((t_point){p.x, p.y, p2.x, p2.y}, &d.img, 0x00990000);
 	else
@@ -92,8 +105,8 @@ void	draw(t_loop_data d, t_main m)
 	while (m.i < (m.size))
 	{
 		p = d.result[m.i];
-		p = point_matrix_multiply(d.model, p);
-		p = point_matrix_multiply(d.pers, p);
+		p = point_matrix_multiply_sse(d.model, p);
+		p = point_matrix_multiply_sse(d.pers, p);
 		if ((m.i % m.i_i) == 0)
 		{
 			m.i_size = m.last_line_index;

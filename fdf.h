@@ -95,6 +95,7 @@ t_point		*get_split_fdf(int fd, unsigned int *size,
 				unsigned int *size_i, unsigned int *size_j);
 t_matrix4f	orthogonal(t_point m, float near, float far);
 t_point		point_matrix_multiply(t_matrix4f m, t_point v);
+t_point		point_matrix_multiply_sse(t_matrix4f m, t_point v);
 t_point		get_normalized_ray(t_point p1, t_point p2);
 void		dda(t_point p, t_data *data, int color);
 int			get_max(int x, int y);

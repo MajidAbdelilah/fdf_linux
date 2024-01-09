@@ -35,8 +35,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (return_empty_str());
 	if (!s)
 		return (NULL);
-	if (start < 0)
-		return (NULL);
+
 	s_len = ft_strlen(s);
 	if (s_len <= (start))
 		return (return_empty_str());
